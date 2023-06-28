@@ -1,0 +1,22 @@
+
+version: 2
+
+models:
+  - name: characters
+    description: "Number of characters in the document"
+    columns:
+      - name: document_id
+        description: "Document ID"
+        tests:
+          - unique
+          - not_null
+      - name: character_count
+        description: "Number of characters in the document"
+        tests:
+          - not_null
+sources:
+  - name: test_collection_1
+    tables:
+      - name: documents
+      - name: splitters
+      - name: models
