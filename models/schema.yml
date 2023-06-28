@@ -14,6 +14,37 @@ models:
         description: "Number of characters in the document"
         tests:
           - not_null
+  - name: new_splitters
+    description: "Splitters used to split the document"
+    columns:
+      - name: id
+        description: "Splitter ID"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Splitter name"
+        tests:
+          - not_null
+      - name: parameters
+        description: "Splitter parameters"
+        tests:
+          - not_null
+  - name: chunks
+    description: "Chunks of the document"
+    columns:
+      - name: document_id
+        description: "Document ID"
+        tests:
+          - not_null
+      - name: splitter_id
+        description: "Splitter ID"
+        tests:
+          - not_null
+      - name: chunk
+        description: "Chunk text"
+        tests:
+          - not_null
 sources:
   - name: test_collection_1
     tables:
