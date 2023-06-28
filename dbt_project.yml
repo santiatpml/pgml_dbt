@@ -7,9 +7,9 @@ version: '1.0.0'
 config-version: 2
 
 vars:
-  splitter_id: 1
   splitter_name: "recursive_character"
   splitter_parameters: {"chunk_size": 100, "chunk_overlap": 20}
+  model_name: "intfloat/e5-small"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'pgml_flow'

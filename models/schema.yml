@@ -14,7 +14,7 @@ models:
         description: "Number of characters in the document"
         tests:
           - not_null
-  - name: new_splitters
+  - name: splitters
     description: "Splitters used to split the document"
     columns:
       - name: id
