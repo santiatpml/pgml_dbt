@@ -9,7 +9,9 @@ config-version: 2
 vars:
   splitter_name: "recursive_character"
   splitter_parameters: {"chunk_size": 100, "chunk_overlap": 20}
-  model_name: "intfloat/e5-small"
+  task: "embedding"
+  model_name: "intfloat/e5-base"
+  embeddings_table_name: "embeddings_intfloat_e5_small"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'pgml_flow'

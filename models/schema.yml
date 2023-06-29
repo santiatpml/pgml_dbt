@@ -49,5 +49,3 @@ sources:
   - name: test_collection_1
     tables:
       - name: documents
-      - name: splitters
-      - name: models
