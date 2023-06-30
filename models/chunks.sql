@@ -15,7 +15,11 @@ splitter as (
 ),
 chunks as (
     select document.id document_id, splitter.id splitter_id, chunk_index, 
-    chunk, md5(document.id::text || splitter.id || chunk_index::text) id 
+    chunk, md5(document.id::text || splitter.id || chunk_index::text) id, CURRENT_TIMESTAMP created_at
     from document, splitter, pgml.chunk(splitter.name, document.text, splitter.parameters)
 )
 select * from chunks
+
+{% if is_incremental() %}
+    where document_id not in (select document_id from {{ this }})
+{% endif %}

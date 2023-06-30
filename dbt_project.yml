@@ -12,6 +12,8 @@ vars:
   task: "embedding"
   model_name: "intfloat/e5-base"
   embeddings_table_name: "embeddings_intfloat_e5_small"
+  query_string: 'Lorem ipsum 3'
+  limit: 2
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'pgml_flow'

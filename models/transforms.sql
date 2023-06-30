@@ -15,7 +15,7 @@ model as (
     select id from {{ ref('models') }} where name = '{{ var('model_name')}}' and parameters @> '{{ tojson(var('model_parameters',{}))}}'::jsonb and parameters <@ '{{ tojson(var('model_parameters',{}))}}'::jsonb
 ),
 transform as (
-    select '{{table_name}}' table_name, '{{ var('task')}}' task, splitter.id splitter_id, model.id model_id from splitter, model
+    select '{{ref('embeddings')}}' table_name, '{{ var('task')}}' task, splitter.id splitter_id, model.id model_id from splitter, model
 )
 select * from transform
 
