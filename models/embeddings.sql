@@ -16,9 +16,13 @@ WITH chunk as (
 model as (
 	select id, name, parameters
 	from {{  ref('models') }}
-	where name = '{{ var('model_name')}}' and parameters @> '{{ tojson(var('model_parameters',{}))}}'::jsonb and parameters <@ '{{ tojson(var('model_parameters',{}))}}'::jsonb
+	where name = '{{ var('model_name')}}' 
+	and parameters @> '{{ tojson(var('model_parameters',{}))}}'::jsonb 
+	and parameters <@ '{{ tojson(var('model_parameters',{}))}}'::jsonb
 ),
 embeddings as (
-    select chunk.id chunk_id, chunk.document_id document_id, chunk.splitter_id splitter_id, chunk.chunk_index chunk_index, cast(embed as vector) embedding from chunk, model, pgml.embed(model.name, chunk.chunk, model.parameters)
+    select chunk.id chunk_id, chunk.document_id document_id, chunk.splitter_id splitter_id, 
+		   chunk.chunk_index chunk_index, cast(embed as vector) embedding 
+		   from chunk, model, pgml.embed(model.name, chunk.chunk, model.parameters)
 )
 select * from embeddings
